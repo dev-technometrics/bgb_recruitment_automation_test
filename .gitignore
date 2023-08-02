@@ -1,0 +1,12 @@
+.pytest_cache/
+.vector_cache/
+.idea/
+__pycache__/
+venv/
+chromedriver_linux64/
+REPORT/
+ERROR/
+test.py
+*.pyc
+*.pkl
+*.pickle
