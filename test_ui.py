@@ -5,10 +5,11 @@ from automation.common.action_element import ActionPerformer
 from automation.common.scraping_driver import ScrapingDriver
 from automation.elegiblecheck.check import ans_is_yes_for_question
 from automation.home.apply_to_job import goto_eligiblecheck_page
-from automation.mobileverification.verify import mobile_verify
+from automation.payment.pay import pay
+from automation.mobileverification.verify import send_otp, mobile_verify_login
 from utils.error_handling import ErrorLogger
 
-MAIN_SITE = 'http://0.0.0.0/'
+MAIN_SITE = 'https://joinborderguard.technometrics.net/'
 scraping_driver = ScrapingDriver()
 scraping_driver.download_driver()
 driver = scraping_driver.execute_driver()
@@ -25,5 +26,11 @@ def test__when_click_to_appy__should__go_elegiblecheck_page():
 def test__when_ans_is_yes_for_question__ask_for_phone_and_email():
    ans_is_yes_for_question(driver, action)
 
-def test__when_give_phone_email__ask_for_otp():
-   mobile_verify(driver, action)
+def test__when_give_phone_email__should__ask_for_otp():
+   send_otp(driver, action)
+
+def test__when_give_otp__should__login():
+   mobile_verify_login(driver, action)
+
+def test__when_loggedin__should_pay():
+   pay(driver)
